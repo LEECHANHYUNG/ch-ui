@@ -8,7 +8,8 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "check-types": "turbo run check-types",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "primitive": "pnpm --filter @ch-ui/primitive"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^3.2.5",
