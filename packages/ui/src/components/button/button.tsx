@@ -1,18 +1,28 @@
 import { Primitive } from "@radix-ui/react-primitive";
-import { button } from "./button.css";
+import { buttonRecipe } from "./button.css";
+import { RecipeVariants } from "@vanilla-extract/recipes";
+import { ComponentProps } from "react";
+
+type ButtonVariantsType = NonNullable<RecipeVariants<typeof buttonRecipe>>;
 
 export interface ButtonProps
-  extends React.ComponentProps<typeof Primitive.button> {
-  color: "primary";
-}
+  extends ComponentProps<typeof Primitive.button>,
+    ButtonVariantsType {}
 
 export const Button = ({
   children,
-  color = "primary",
+  ghost = false,
+  size = 2,
   ...props
 }: ButtonProps) => {
   return (
-    <Primitive.button {...props} className={button[color]}>
+    <Primitive.button
+      {...props}
+      className={buttonRecipe({
+        size,
+        ghost,
+      })}
+    >
       {children}
     </Primitive.button>
   );
