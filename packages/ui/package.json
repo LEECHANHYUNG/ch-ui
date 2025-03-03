@@ -2,12 +2,25 @@
   "name": "@ch-ui/primitive",
   "version": "0.0.0",
   "private": true,
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.mjs",
+  "types": "dist/types/index.d.ts",
   "exports": {
-    "./*": "./src/*.tsx"
+    ".": {
+      "import": {
+        "types": "./dist/types/index.d.ts",
+        "default": "./dist/esm/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/index.d.ts",
+        "default": "./dist/cjs/index.cjs"
+      }
+    }
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",
-    "check-types": "tsc --noEmit"
+    "check-types": "tsc --noEmit",
+    "build": "tsup && node tsup-plugin.mjs"
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
@@ -15,9 +28,11 @@
     "@types/node": "^22.13.0",
     "@types/react": "19.0.8",
     "@types/react-dom": "19.0.3",
+    "@vanilla-extract/esbuild-plugin": "^2.3.15",
     "@vanilla-extract/recipes": "^0.5.5",
     "@vanilla-extract/vite-plugin": "^5.0.1",
     "eslint": "^9.21.0",
+    "tsup": "^8.4.0",
     "typescript": "5.7.3"
   },
   "dependencies": {
